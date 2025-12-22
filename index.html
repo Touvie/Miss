@@ -11,13 +11,11 @@
         :root {
             --bg-color: #f9f7f2;
             --text-color: #2c2c2c;
-            --accent-color: #c5a059; /* Or Mat */
+            --accent-color: #c5a059;
             --white: #ffffff;
         }
 
-        /* SCROLL DOUX : Empêche l'effet de téléportation */
         html { scroll-behavior: smooth; }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -35,61 +33,23 @@
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            height: 80px; /* Hauteur fixe pour centrage */
-            display: flex;
-            align-items: center;
+            position: fixed; width: 100%; top: 0; z-index: 1000; height: 80px; display: flex; align-items: center;
         }
-
         nav {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Centre verticalement logo, menu et bouton */
-            padding: 0 2rem;
+            width: 100%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem;
         }
-
-        /* Zone Logo et Titre */
-        .brand-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-img {
-            height: 50px; /* Taille du logo */
-            width: auto;
-        }
-
-        .brand-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
-        }
-
-        .nav-links { 
-            display: flex; 
-            gap: 2rem; 
-            align-items: center; /* Assure que le texte est aligné avec le bouton */
-        }
-        
-        .nav-links a {
-            font-size: 1rem;
-            font-weight: 500;
-        }
+        .brand-area { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 50px; width: auto; border-radius: 50%; }
+        .brand-name { font-size: 1.4rem; font-weight: 700; font-family: 'Playfair Display', serif; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: var(--accent-color); }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 90vh; /* Plus grand pour l'immersion */
-            /* Image de fond avec un dégradé plus subtil pour mettre en avant la photo */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1920&q=80');
+            height: 90vh;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -98,192 +58,132 @@
             align-items: center;
             text-align: center;
             padding: 0 1rem;
-            margin-top: 80px; /* Compense le header fixe */
+            margin-top: 80px;
         }
 
-        .hero h1 { 
-            font-size: 4rem; 
-            margin-bottom: 0.5rem; 
-            color: #ffffff !important; 
-            text-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Ombre portée pour lisibilité sur photo claire */
+        /* Dégradé raccourci (100px) */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Plus court pour éviter l'effet "brouillard" trop haut */
+            background: linear-gradient(to bottom, transparent, var(--bg-color));
+            pointer-events: none;
         }
-        
-        .hero p { 
-            font-size: 1.4rem; 
-            margin-bottom: 2.5rem; 
-            color: #f0f0f0;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            max-width: 700px;
-        }
+
+        .hero-content { position: relative; z-index: 2; }
+        .hero h1 { font-size: 4rem; margin-bottom: 0.5rem; color: #ffffff !important; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.4rem; margin-bottom: 2.5rem; color: #f0f0f0; text-shadow: 0 2px 5px rgba(0,0,0,0.5); max-width: 700px; }
 
         .btn {
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: var(--accent-color); color: var(--white); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-transform: uppercase; border: none; cursor: pointer; font-size: 0.9rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .btn:hover { background-color: #a38242; transform: translateY(-2px); }
 
         /* --- MENU SECTIONS --- */
         .menu-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--text-color); margin-bottom: 3rem; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent-color); margin: 10px auto 0; }
         
-        .section-title {
-            text-align: center; font-size: 2.5rem; color: var(--text-color); margin-bottom: 3rem; position: relative;
-        }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent-color); margin: 10px auto 0;
-        }
+        /* Ajustement Grid pour Mobile : minmax passe à 300px pour éviter l'écrasement */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; }
 
-        .menu-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 3rem; /* Cartes plus larges */
-        }
+        /* --- CARTE --- */
+        .menu-card { background: transparent; display: flex; flex-direction: column; }
 
-        /* --- NOUVELLE CARTE AVEC OVERLAY --- */
-        .menu-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Ombre plus douce et large */
-            display: flex; flex-direction: column;
-        }
-
-        /* Conteneur de l'image (Zone Relative) */
         .card-img-container {
             position: relative;
-            height: 350px; /* Image bien haute */
+            height: 400px;
             overflow: hidden;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            z-index: 10;
         }
 
-        .card-img {
-            width: 100%;
-            height: 100%;
-            background-color: #333;
-            background-size: cover;
-            background-position: center;
-            transition: opacity 0.4s ease-in-out; /* Transition douce */
-        }
+        .card-img { width: 100%; height: 100%; background-color: #333; background-size: cover; background-position: center; transition: opacity 0.3s ease-in-out; }
 
-        /* L'Overlay (Texte sur l'image) */
         .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            /* Le fameux dégradé couleur/transparent (Noir vers transparent ici pour lisibilité) */
+            position: absolute; bottom: 0; left: 0; width: 100%;
             background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.7) 40%, transparent 100%);
-            padding: 2rem 1.5rem 1rem 1.5rem;
-            color: white;
-            opacity: 0; /* Caché par défaut */
-            transform: translateY(20px);
-            transition: all 0.4s ease-out;
-            pointer-events: none; /* Laisse passer les clics si besoin */
+            padding: 2rem 1.5rem 1rem 1.5rem; color: white; opacity: 0; transform: translateY(20px); transition: all 0.4s ease-out; pointer-events: none;
         }
-        
-        /* Quand actif, on affiche l'overlay */
-        .image-overlay.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .overlay-title {
-            font-family: 'Playfair Display', serif; 
-            color: var(--accent-color); 
-            font-size: 1.6rem; 
-            margin-bottom: 0.3rem;
-        }
+        .image-overlay.active { opacity: 1; transform: translateY(0); }
+        .overlay-title { font-family: 'Playfair Display', serif; color: var(--accent-color); font-size: 1.6rem; margin-bottom: 0.3rem; }
         .overlay-desc { font-size: 0.95rem; margin-bottom: 0.5rem; color: #ddd; font-style: italic; }
         .overlay-ing { font-size: 0.85rem; color: #ccc; }
-
-        /* Tags Allergènes dans l'overlay */
         .tags-wrapper { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
-        .tag {
-            font-size: 0.65rem; background-color: rgba(255,255,255,0.2); color: #fff; padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3);
+        .tag { font-size: 0.65rem; background-color: rgba(255,255,255,0.2); color: #fff; padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); }
+
+        .card-content { 
+            padding: 2rem 1.5rem 1.5rem 1.5rem; 
+            background-color: white; 
+            position: relative; 
+            z-index: 5; 
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: -10px;
+            padding-top: 25px;
         }
-
-
-        /* --- CONTENU BAS DE LA CARTE --- */
-        .card-content { padding: 1.5rem; background-color: white; position: relative; z-index: 2; }
         
         .main-category-title { font-size: 1.5rem; margin-bottom: 0.2rem; }
         .card-price { color: var(--accent-color); font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem; display: block; }
-
-        /* Boutons de sélection */
-        .selection-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        
+        .selection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        
+        .select-btn { 
+            background: transparent; border: 1px solid #ddd; padding: 12px; 
+            text-align: left; cursor: pointer; border-radius: 6px; 
+            font-family: 'Lato', sans-serif; font-size: 0.9rem; transition: all 0.2s; color: #555; 
         }
-
-        .select-btn {
-            background: transparent;
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 6px;
-            font-family: 'Lato', sans-serif;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            color: #555;
-        }
-
         .select-btn:hover { border-color: var(--accent-color); color: var(--accent-color); background-color: #fffbf0; }
-        
-        .select-btn.active {
-            background-color: var(--text-color); /* Bouton actif en sombre pour contraste */
-            color: white; 
-            border-color: var(--text-color);
-        }
+        .select-btn.active { background-color: var(--text-color); color: white; border-color: var(--text-color); }
 
-        /* --- CONTACT (Modifié) --- */
-        .contact-section { 
-            background-color: #2c2c2c; 
-            color: var(--white); 
-            padding: 3rem 1rem; /* Moins de padding top/bottom */
-        }
-        
-        .contact-container { 
-            max-width: 1000px; /* Plus large */
-            margin: 0 auto; 
-            display: grid; 
-            grid-template-columns: 1fr 1.5fr; /* Le formulaire prend plus de place */
-            gap: 4rem; 
-            align-items: start;
-        }
-        
+        /* --- CONTACT --- */
+        .contact-section { background-color: #2c2c2c; color: var(--white); padding: 3rem 1rem; }
+        .contact-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
         .contact-info h2 { color: var(--white); margin-bottom: 1rem; }
-        .contact-form { 
-            background: rgba(255,255,255,0.05); 
-            padding: 2rem; 
-            border-radius: 8px; 
-            width: 100%;
-        }
-        
-        .form-control { 
-            width: 100%; 
-            padding: 15px; /* Champs plus grands */
-            border: 1px solid #444; 
-            background-color: #383838; 
-            color: white; 
-            border-radius: 4px; 
-            margin-bottom: 1.2rem; 
-            font-size: 1rem;
-        }
-        
+        .contact-form { background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 8px; width: 100%; }
+        .form-control { width: 100%; padding: 15px; border: 1px solid #444; background-color: #383838; color: white; border-radius: 4px; margin-bottom: 1.2rem; font-size: 1rem; }
         .form-control:focus { outline: none; border-color: var(--accent-color); background-color: #444; }
 
-        /* RESPONSIVE */
+        /* --- FOOTER FIX --- */
+        footer {
+            background-color: #222;
+            color: #888;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        footer p {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* --- RESPONSIVE FIXES --- */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .brand-area { flex-grow: 1; }
+            
+            /* Header plus petit sur mobile ? */
+            header { padding: 0 1rem; }
+            nav { padding: 0; }
+
+            .hero { margin-top: 80px; height: 80vh; }
+            .hero h1 { font-size: 2.5rem; line-height: 1.2; }
+            
+            .menu-grid { grid-template-columns: 1fr; gap: 3rem; }
+            
+            /* Image moins haute sur mobile pour gagner de la place */
+            .card-img-container { height: 250px; }
+            
             .contact-container { grid-template-columns: 1fr; gap: 2rem; }
-            .hero h1 { font-size: 2.5rem; }
-            .menu-grid { grid-template-columns: 1fr; }
+            
+            /* Boutons plus compacts sur mobile */
+            .select-btn { padding: 8px; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -292,10 +192,9 @@
     <header>
         <nav>
             <div class="brand-area">
-                <img src="https://via.placeholder.com/100x100?text=Logo" alt="Logo" class="logo-img" style="border-radius: 50%;">
+                <img src="https://via.placeholder.com/100x100?text=Logo" alt="Logo" class="logo-img">
                 <span class="brand-name">Aux Délices des Miss</span>
             </div>
-
             <div class="nav-links">
                 <a href="#planches">Planches</a>
                 <a href="#aperitifs">Apéritifs</a>
@@ -306,9 +205,11 @@
     </header>
 
     <section class="hero">
-        <h1>Traiteur Créatif & Généreux</h1>
-        <p>L'art de recevoir avec simplicité et élégance.</p>
-        <a href="#aperitifs" class="btn">Découvrir la carte</a>
+        <div class="hero-content">
+            <h1>Traiteur Créatif & Généreux</h1>
+            <p>L'art de recevoir avec simplicité et élégance.</p>
+            <a href="#aperitifs" class="btn">Découvrir la carte</a>
+        </div>
     </section>
 
     <section id="planches" class="menu-section">
@@ -353,7 +254,6 @@
             <div class="menu-card" id="card-bouchees">
                 <div class="card-img-container">
                     <div class="card-img" id="img-bouchees" style="background-image: url('https://images.unsplash.com/photo-1595295333158-4742f28fbd85?auto=format&fit=crop&w=800&q=60');"></div>
-                    
                     <div class="image-overlay" id="overlay-bouchees">
                         <h4 class="overlay-title">Titre</h4>
                         <p class="overlay-desc">Desc</p>
@@ -361,55 +261,28 @@
                         <div class="tags-wrapper"></div>
                     </div>
                 </div>
-
                 <div class="card-content">
                     <h3 class="main-category-title">Les Bouchées</h3>
                     <span class="card-price">2,50€ la pièce</span>
                     
                     <div class="selection-grid">
-                        <button class="select-btn" 
-                            data-target="card-bouchees"
-                            data-overlay="overlay-bouchees"
-                            data-img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=60"
-                            data-title="Mini Burger"
-                            data-desc="Le classique revisité façon cocktail."
-                            data-ing="Pain sésame, bœuf, cheddar, sauce maison."
-                            data-allergens="Gluten,Sésame,Lait">
-                            Burgers
-                        </button>
-
-                        <button class="select-btn" 
-                            data-target="card-bouchees"
-                            data-overlay="overlay-bouchees"
-                            data-img="https://images.unsplash.com/photo-1612151855475-877969f4a6cc?auto=format&fit=crop&w=800&q=60"
-                            data-title="Hot Dogs"
-                            data-desc="Saucisse de volaille et oignons frits."
-                            data-ing="Pain brioché, saucisse, ketchup, moutarde."
-                            data-allergens="Gluten,Moutarde">
-                            Hot dogs
-                        </button>
-
-                        <button class="select-btn" 
-                            data-target="card-bouchees"
-                            data-overlay="overlay-bouchees"
-                            data-img="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=60"
-                            data-title="Croque Monsieur"
-                            data-desc="Fondant et croustillant."
-                            data-ing="Pain de mie, jambon, emmental."
-                            data-allergens="Gluten,Lait">
-                            Croque Monsieur
-                        </button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=60" data-title="Mini Burger" data-desc="Le classique revisité." data-ing="Pain sésame, bœuf, cheddar, sauce maison." data-allergens="Gluten,Sésame,Lait">Burgers</button>
                         
-                         <button class="select-btn" 
-                            data-target="card-bouchees"
-                            data-overlay="overlay-bouchees"
-                            data-img="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=60"
-                            data-title="Mini Pizzas"
-                            data-desc="Saveurs d'Italie."
-                            data-ing="Pâte fine, tomate, mozza, origan."
-                            data-allergens="Gluten,Lait">
-                            Pizzas
-                        </button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1612151855475-877969f4a6cc?auto=format&fit=crop&w=800&q=60" data-title="Hot Dogs" data-desc="Saucisse de volaille et oignons frits." data-ing="Pain brioché, saucisse, ketchup, moutarde." data-allergens="Gluten,Moutarde">Hot dogs</button>
+                        
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=60" data-title="Croque Monsieur" data-desc="Fondant et croustillant." data-ing="Pain de mie, jambon, emmental." data-allergens="Gluten,Lait">Croque Monsieur</button>
+                        
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=60" data-title="Mini Pizzas" data-desc="Saveurs d'Italie." data-ing="Pâte fine, tomate, mozza, origan." data-allergens="Gluten,Lait">Pizzas</button>
+
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=60" data-title="Cône Wrap" data-desc="Fraîcheur roulée." data-ing="Tortilla, fromage frais, crudités." data-allergens="Gluten,Lait">Cône Wrap</button>
+
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=800&q=60" data-title="Feuilleté" data-desc="Croustillant et doré." data-ing="Pâte feuilletée, garniture saison." data-allergens="Gluten,Œuf">Feuilleté</button>
+                        
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1572695157363-bc31c5d53149?auto=format&fit=crop&w=800&q=60" data-title="Bruschetta" data-desc="Tartine méditerranéenne." data-ing="Pain grillé, tomate, ail, basilic." data-allergens="Gluten">Bruschetta</button>
+
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=60" data-title="Navette" data-desc="Petit pain brioché garni." data-ing="Pain navette, mousse canard ou thon." data-allergens="Gluten,Œuf,Lait">Navette</button>
+
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1621251347633-9118c7c2522b?auto=format&fit=crop&w=800&q=60" data-title="Muffins Salés" data-desc="Moelleux aux légumes ou lardons." data-ing="Farine, œufs, légumes, fromage." data-allergens="Gluten,Œuf,Lait">Muffins Salés</button>
                     </div>
                 </div>
             </div>
@@ -417,7 +290,6 @@
             <div class="menu-card" id="card-verrines">
                 <div class="card-img-container">
                     <div class="card-img" id="img-verrines" style="background-image: url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=800&q=60');"></div>
-                    
                     <div class="image-overlay" id="overlay-verrines">
                         <h4 class="overlay-title">Titre</h4>
                         <p class="overlay-desc">Desc</p>
@@ -425,44 +297,19 @@
                         <div class="tags-wrapper"></div>
                     </div>
                 </div>
-
                 <div class="card-content">
                     <h3 class="main-category-title">Les Verrines</h3>
                     <span class="card-price">2,50€ la pièce</span>
-                    
                     <div class="selection-grid">
-                        <button class="select-btn" 
-                            data-target="card-verrines"
-                            data-overlay="overlay-verrines"
-                            data-img="https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=800&q=60"
-                            data-title="Thon Pêche"
-                            data-desc="Fraîcheur sucré-salé."
-                            data-ing="Thon, pêche, mayonnaise, ciboulette."
-                            data-allergens="Poisson,Œuf">
-                            Thon pêche
-                        </button>
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=800&q=60" data-title="Thon Pêche" data-desc="Fraîcheur sucré-salé." data-ing="Thon, pêche, mayonnaise, ciboulette." data-allergens="Poisson,Œuf">Thon pêche</button>
                         
-                        <button class="select-btn" 
-                            data-target="card-verrines"
-                            data-overlay="overlay-verrines"
-                            data-img="https://images.unsplash.com/photo-1623855244697-5d8fbe9c7992?auto=format&fit=crop&w=800&q=60"
-                            data-title="Avocat Saumon"
-                            data-desc="Onctueux et raffiné."
-                            data-ing="Avocat, saumon fumé, citron, aneth."
-                            data-allergens="Poisson,Lait">
-                            Avocat saumon
-                        </button>
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1623855244697-5d8fbe9c7992?auto=format&fit=crop&w=800&q=60" data-title="Perles Avocat Saumon" data-desc="Onctueux et raffiné." data-ing="Avocat, saumon fumé, citron, aneth." data-allergens="Poisson,Lait">Perles avocat saumon</button>
 
-                         <button class="select-btn" 
-                            data-target="card-verrines"
-                            data-overlay="overlay-verrines"
-                            data-img="https://images.unsplash.com/photo-1515443961218-a51367888e4b?auto=format&fit=crop&w=800&q=60"
-                            data-title="Rougail Crevette"
-                            data-desc="Touche exotique."
-                            data-ing="Crevettes, tomates, épices, riz."
-                            data-allergens="Crustacés">
-                            Rougail crevette
-                        </button>
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1505253668822-4204204916cd?auto=format&fit=crop&w=800&q=60" data-title="Potimarron Chorizo" data-desc="Douceur automnale relevée." data-ing="Velouté potimarron, chips chorizo." data-allergens="Lait">Potimarron chorizo</button>
+
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1605695785834-b040409a2503?auto=format&fit=crop&w=800&q=60" data-title="Boudin Pomme" data-desc="Le mariage classique revisité." data-ing="Compotée pommes, boudin noir." data-allergens="Gluten">Boudin pomme</button>
+                        
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1515443961218-a51367888e4b?auto=format&fit=crop&w=800&q=60" data-title="Rougail Crevette" data-desc="Touche exotique." data-ing="Crevettes, tomates, épices, riz." data-allergens="Crustacés">Rougail crevette</button>
                     </div>
                 </div>
             </div>
@@ -476,7 +323,6 @@
             <div class="menu-card" id="card-sucre">
                 <div class="card-img-container">
                     <div class="card-img" id="img-sucre" style="background-image: url('https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=800&q=60');"></div>
-                    
                     <div class="image-overlay" id="overlay-sucre">
                         <h4 class="overlay-title">Titre</h4>
                         <p class="overlay-desc">Desc</p>
@@ -484,39 +330,23 @@
                         <div class="tags-wrapper"></div>
                     </div>
                 </div>
-
                 <div class="card-content">
                     <h3 class="main-category-title">Desserts Individuels</h3>
                     <span class="card-price">2,50€ la pièce</span>
-                    
                     <div class="selection-grid">
-                        <button class="select-btn" 
-                            data-target="card-sucre"
-                            data-overlay="overlay-sucre"
-                            data-img="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=800&q=60"
-                            data-title="Muffin Chocolat"
-                            data-desc="Tout chocolat, cœur fondant."
-                            data-ing="Chocolat noir, farine, beurre."
-                            data-allergens="Gluten,Lait,Œuf">
-                            Muffin chocolat
-                        </button>
+                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=800&q=60" data-title="Muffin Chocolat" data-desc="Tout chocolat, cœur fondant." data-ing="Chocolat noir, farine, beurre." data-allergens="Gluten,Lait,Œuf">Muffin chocolat</button>
+                        
+                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=60" data-title="Tartelettes Fruits" data-desc="Fraîcheur des fruits de saison." data-ing="Pâte sablée, crème, fruits." data-allergens="Gluten,Lait,Œuf">Tartelettes fruits</button>
 
-                         <button class="select-btn" 
-                            data-target="card-sucre"
-                            data-overlay="overlay-sucre"
-                            data-img="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=60"
-                            data-title="Tartelette Fruits"
-                            data-desc="Fraîcheur des fruits de saison."
-                            data-ing="Pâte sablée, crème, fruits."
-                            data-allergens="Gluten,Lait,Œuf">
-                            Tartelettes fruits
-                        </button>
+                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1542315053-90d5718df26d?auto=format&fit=crop&w=800&q=60" data-title="Salade de fruits" data-desc="Cocktail vitaminé frais." data-ing="Mélange de fruits frais de saison." data-allergens="">Salade de fruit</button>
+
+                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1551024601-569d6f46319c?auto=format&fit=crop&w=800&q=60" data-title="Panna Cotta" data-desc="Crème dessert italienne et coulis." data-ing="Crème, sucre, vanille, coulis rouge." data-allergens="Lait">Panna cotta</button>
                     </div>
                 </div>
             </div>
             
-            <div class="menu-card" style="justify-content: center; background-color: var(--accent-color); color: white;">
-                <div class="card-content" style="text-align: center; border:none; background: transparent; padding: 3rem;">
+            <div class="menu-card" style="justify-content: center; background-color: var(--accent-color); color: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <div class="card-content" style="text-align: center; border:none; background: transparent; padding: 3rem; margin-top: 0;">
                     <h3 style="color: white; font-size: 2rem;">Sur Mesure</h3>
                     <p style="margin-top: 1.5rem; color: #fff;">Liste des bouchées non exclusives.</p>
                     <p style="font-weight: bold; font-size: 1.2rem; margin-top: 1rem;">ON S'ADAPTE A VOS GOUTS !</p>
@@ -550,50 +380,43 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.select-btn');
-
             buttons.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Gestion de l'état Actif du bouton
                     const parentGrid = this.closest('.selection-grid');
                     parentGrid.querySelectorAll('.select-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-
-                    // Récupération des données
+                    
                     const targetCardId = this.getAttribute('data-target');
                     const overlayId = this.getAttribute('data-overlay');
                     const newImgSrc = this.getAttribute('data-img');
                     
-                    // Cibles
                     const card = document.getElementById(targetCardId);
                     const overlay = document.getElementById(overlayId);
                     const imgDiv = card.querySelector('.card-img');
-
-                    // 1. Changement de l'image (Transition Opacity pour éviter l'effet brutal)
+                    
                     imgDiv.style.opacity = 0;
                     setTimeout(() => {
                         imgDiv.style.backgroundImage = `url('${newImgSrc}')`;
                         imgDiv.style.opacity = 1;
-                    }, 200); // Rapide mais doux
-
-                    // 2. Remplissage de l'Overlay
+                    }, 200);
+                    
                     overlay.querySelector('.overlay-title').innerText = this.getAttribute('data-title');
                     overlay.querySelector('.overlay-desc').innerText = this.getAttribute('data-desc');
                     overlay.querySelector('.overlay-ing span').innerText = this.getAttribute('data-ing');
-
-                    // Tags
+                    
                     const tagsContainer = overlay.querySelector('.tags-wrapper');
                     tagsContainer.innerHTML = '';
                     const allergensRaw = this.getAttribute('data-allergens');
                     if (allergensRaw) {
                         allergensRaw.split(',').forEach(allergen => {
-                            const span = document.createElement('span');
-                            span.classList.add('tag');
-                            span.innerText = allergen.trim();
-                            tagsContainer.appendChild(span);
+                            if(allergen.trim() !== '') {
+                                const span = document.createElement('span');
+                                span.classList.add('tag');
+                                span.innerText = allergen.trim();
+                                tagsContainer.appendChild(span);
+                            }
                         });
                     }
-
-                    // 3. Affichage de l'Overlay (Ajout de la classe active)
                     overlay.classList.add('active');
                 });
             });
