@@ -29,6 +29,65 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
+        /* --- OVERLAY CENTRAL (MODAL) --- */
+        #overlay-backdrop {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        #welcome-modal {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 500px;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 2px solid var(--accent-color);
+            position: relative;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            color: #b3000c;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .modal-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .modal-btn:hover { background-color: #a38242; transform: translateY(-2px); }
+
+
         /* --- NAVIGATION --- */
         header {
             background-color: var(--white);
@@ -38,12 +97,21 @@
         nav {
             width: 100%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem;
         }
-        .brand-area { display: flex; align-items: center; gap: 15px; }
+        .brand-area { display: flex; align-items: center; gap: 10px; }
+        
         .logo-img { height: 50px; width: auto; border-radius: 50%; }
         .brand-name { font-size: 1.4rem; font-weight: 700; font-family: 'Playfair Display', serif; letter-spacing: 1px; }
+        
         .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { font-size: 1rem; font-weight: 500; }
+        .nav-links a { font-size: 1rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
         .nav-links a:hover { color: var(--accent-color); }
+        
+        /* CLASS UNIQUE POUR LES DEUX SAPINS (Même taille) */
+        .header-sapin {
+            height: 40px; 
+            width: auto;
+            vertical-align: middle;
+        }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -59,48 +127,72 @@
             text-align: center;
             padding: 0 1rem;
             margin-top: 80px;
+            overflow: hidden; 
         }
 
-        /* Dégradé raccourci (100px) */
         .hero::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px; /* Plus court pour éviter l'effet "brouillard" trop haut */
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 100px;
             background: linear-gradient(to bottom, transparent, var(--bg-color));
-            pointer-events: none;
+            pointer-events: none; z-index: 3;
         }
 
-        .hero-content { position: relative; z-index: 2; }
+        .hero-content { position: relative; z-index: 10; }
         .hero h1 { font-size: 4rem; margin-bottom: 0.5rem; color: #ffffff !important; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.4rem; margin-bottom: 2.5rem; color: #f0f0f0; text-shadow: 0 2px 5px rgba(0,0,0,0.5); max-width: 700px; }
+        .hero p { 
+            font-size: 1.4rem; margin: 0 auto 2.5rem auto; color: #f0f0f0; 
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5); max-width: 700px; 
+        }
+
+        .center { text-align: center; }
 
         .btn {
             background-color: var(--accent-color); color: var(--white); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-transform: uppercase; border: none; cursor: pointer; font-size: 0.9rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .btn:hover { background-color: #a38242; transform: translateY(-2px); }
 
+        /* --- NEIGE CSS --- */
+        .snow-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 5;
+        }
+        .snowflake {
+            position: absolute; top: -20px; 
+            color: white; font-size: 1.5rem; opacity: 0.8;
+            animation: fall linear infinite;
+            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+        }
+        .snowflake::after { content: '❄'; } 
+
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        
+        .s1 { left: 10%; animation-duration: 10s; font-size: 1.2rem; }
+        .s2 { left: 25%; animation-duration: 15s; animation-delay: 2s; font-size: 1rem; }
+        .s3 { left: 40%; animation-duration: 12s; animation-delay: 4s; font-size: 1.5rem; }
+        .s4 { left: 60%; animation-duration: 18s; animation-delay: 1s; font-size: 1rem; }
+        .s5 { left: 75%; animation-duration: 14s; animation-delay: 3s; font-size: 1.3rem; }
+        .s6 { left: 90%; animation-duration: 16s; animation-delay: 5s; font-size: 1.1rem; }
+
         /* --- MENU SECTIONS --- */
         .menu-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.5rem; color: var(--text-color); margin-bottom: 3rem; position: relative; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent-color); margin: 10px auto 0; }
+        .section-title { 
+            text-align: center; font-size: 2.5rem; color: var(--text-color); margin-bottom: 3rem; position: relative; 
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+        }
+        .section-title span { position: relative; }
+        .section-title span::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent-color); margin: 10px auto 0; }
         
-        /* Ajustement Grid pour Mobile : minmax passe à 300px pour éviter l'écrasement */
+        .deco-sucre { height: 40px; width: auto; }
+
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; }
 
         /* --- CARTE --- */
         .menu-card { background: transparent; display: flex; flex-direction: column; }
 
         .card-img-container {
-            position: relative;
-            height: 400px;
-            overflow: hidden;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            z-index: 10;
+            position: relative; height: 400px; overflow: hidden;
+            border-top-left-radius: 12px; border-top-right-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); z-index: 10;
         }
 
         .card-img { width: 100%; height: 100%; background-color: #333; background-size: cover; background-position: center; transition: opacity 0.3s ease-in-out; }
@@ -118,15 +210,10 @@
         .tag { font-size: 0.65rem; background-color: rgba(255,255,255,0.2); color: #fff; padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); }
 
         .card-content { 
-            padding: 2rem 1.5rem 1.5rem 1.5rem; 
-            background-color: white; 
-            position: relative; 
-            z-index: 5; 
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-top: -10px;
-            padding-top: 25px;
+            padding: 2rem 1.5rem 1.5rem 1.5rem; background-color: white; 
+            position: relative; z-index: 5; 
+            border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-top: -10px; padding-top: 25px;
         }
         
         .main-category-title { font-size: 1.5rem; margin-bottom: 0.2rem; }
@@ -150,53 +237,61 @@
         .form-control { width: 100%; padding: 15px; border: 1px solid #444; background-color: #383838; color: white; border-radius: 4px; margin-bottom: 1.2rem; font-size: 1rem; }
         .form-control:focus { outline: none; border-color: var(--accent-color); background-color: #444; }
 
-        /* --- FOOTER FIX --- */
-        footer {
-            background-color: #222;
-            color: #888;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-        footer p {
-            font-family: 'Lato', sans-serif;
-            font-size: 0.9rem;
-            margin: 0;
-        }
+        /* Image Père Noël (taille augmentée) */
+        .img-pere-noel { margin-top: 20px; max-width: 300px; display: block; border-radius: 8px; }
 
-        /* --- RESPONSIVE FIXES --- */
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222; color: #888; padding: 2rem 1rem; text-align: center;
+        }
+        footer p { font-family: 'Lato', sans-serif; font-size: 0.9rem; margin: 0; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .brand-area { flex-grow: 1; }
-            
-            /* Header plus petit sur mobile ? */
+            .brand-area { flex-grow: 1; justify-content: center; }
             header { padding: 0 1rem; }
             nav { padding: 0; }
-
             .hero { margin-top: 80px; height: 80vh; }
             .hero h1 { font-size: 2.5rem; line-height: 1.2; }
-            
             .menu-grid { grid-template-columns: 1fr; gap: 3rem; }
-            
-            /* Image moins haute sur mobile pour gagner de la place */
             .card-img-container { height: 250px; }
-            
             .contact-container { grid-template-columns: 1fr; gap: 2rem; }
-            
-            /* Boutons plus compacts sur mobile */
             .select-btn { padding: 8px; font-size: 0.85rem; }
+            
+            #welcome-modal { padding: 1.5rem; width: 90%; }
+            .modal-title { font-size: 2rem; }
+            
+            /* Ajustement pour mobile si le nom + sapin est trop large */
+            .header-sapin { height: 30px; }
         }
     </style>
 </head>
 <body>
 
+    <div id="overlay-backdrop">
+        <div id="welcome-modal">
+            <h2 class="modal-title">🎄 Joyeux Noël !</h2>
+            <p class="modal-text">
+                Voici un nouveau site web pour lancer <strong>Aux Délices des Miss</strong> comme il se doit !<br><br>
+                C'est encore une première version, mais nous sommes prêts pour les fêtes.
+            </p>
+            <button class="modal-btn" id="close-overlay-btn">Entrer sur le site</button>
+        </div>
+    </div>
+
     <header>
         <nav>
             <div class="brand-area">
-                <img src="https://via.placeholder.com/100x100?text=Logo" alt="Logo" class="logo-img">
+                <img src="Images/Logo.png" alt="Logo" class="logo-img">
                 <span class="brand-name">Aux Délices des Miss</span>
+                <img src="Images/Sapin.png" alt="Sapin" class="header-sapin">
             </div>
             <div class="nav-links">
-                <a href="#planches">Planches</a>
+                <a href="#planches">
+                    <img src="Images/Sapin.png" alt="Sapin" class="header-sapin">
+                    Planches
+                </a>
                 <a href="#aperitifs">Apéritifs</a>
                 <a href="#sucre">Sucré</a>
                 <a href="#contact" class="btn" style="padding: 0.6rem 1.8rem; margin-left: 10px;">Réserver</a>
@@ -205,19 +300,28 @@
     </header>
 
     <section class="hero">
+        <div class="snow-container">
+            <div class="snowflake s1"></div>
+            <div class="snowflake s2"></div>
+            <div class="snowflake s3"></div>
+            <div class="snowflake s4"></div>
+            <div class="snowflake s5"></div>
+            <div class="snowflake s6"></div>
+        </div>
+
         <div class="hero-content">
             <h1>Traiteur Créatif & Généreux</h1>
-            <p>L'art de recevoir avec simplicité et élégance.</p>
+            <p class="center">L'art de recevoir avec simplicité et élégance.</p>
             <a href="#aperitifs" class="btn">Découvrir la carte</a>
         </div>
     </section>
 
     <section id="planches" class="menu-section">
-        <h2 class="section-title">Nos Planches</h2>
+        <h2 class="section-title"><span>Nos Planches</span></h2>
         <div class="menu-grid">
             <div class="menu-card">
                 <div class="card-img-container">
-                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1549488344-c738c863a3a4?auto=format&fit=crop&w=800&q=60');"></div>
+                    <div class="card-img" style="background-image: url('Images/Planche-Charcuterie.jpg');"></div>
                     <div class="image-overlay active">
                         <h4 class="overlay-title">Charcuterie Fine</h4>
                         <p class="overlay-ing">5 Variétés, cornichons, beurre doux.</p>
@@ -231,7 +335,7 @@
 
             <div class="menu-card">
                 <div class="card-img-container">
-                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1626202162607-7489af41804f?auto=format&fit=crop&w=800&q=60');"></div>
+                    <div class="card-img" style="background-image: url('Images/Planche-Fromage.jpeg');"></div>
                     <div class="image-overlay active">
                         <h4 class="overlay-title">Fromages Affinés</h4>
                         <p class="overlay-ing">4 fromages, noix, fruits secs.</p>
@@ -246,11 +350,10 @@
     </section>
 
     <section id="aperitifs" class="menu-section" style="background-color: #fff;">
-        <h2 class="section-title">Plateaux à Composer</h2>
+        <h2 class="section-title"><span>Plateaux à Composer</span></h2>
         <p style="text-align: center; margin-bottom: 3rem; font-style: italic; color: #777;">Sélectionnez vos pièces pour voir les détails (Min. 20 pièces)</p>
         
         <div class="menu-grid">
-            
             <div class="menu-card" id="card-bouchees">
                 <div class="card-img-container">
                     <div class="card-img" id="img-bouchees" style="background-image: url('https://images.unsplash.com/photo-1595295333158-4742f28fbd85?auto=format&fit=crop&w=800&q=60');"></div>
@@ -264,25 +367,16 @@
                 <div class="card-content">
                     <h3 class="main-category-title">Les Bouchées</h3>
                     <span class="card-price">2,50€ la pièce</span>
-                    
                     <div class="selection-grid">
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=60" data-title="Mini Burger" data-desc="Le classique revisité." data-ing="Pain sésame, bœuf, cheddar, sauce maison." data-allergens="Gluten,Sésame,Lait">Burgers</button>
-                        
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1612151855475-877969f4a6cc?auto=format&fit=crop&w=800&q=60" data-title="Hot Dogs" data-desc="Saucisse de volaille et oignons frits." data-ing="Pain brioché, saucisse, ketchup, moutarde." data-allergens="Gluten,Moutarde">Hot dogs</button>
-                        
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=60" data-title="Croque Monsieur" data-desc="Fondant et croustillant." data-ing="Pain de mie, jambon, emmental." data-allergens="Gluten,Lait">Croque Monsieur</button>
-                        
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=60" data-title="Mini Pizzas" data-desc="Saveurs d'Italie." data-ing="Pâte fine, tomate, mozza, origan." data-allergens="Gluten,Lait">Pizzas</button>
-
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Burger.jpg" data-title="Mini Burger" data-desc="Le classique revisité." data-ing="Pain sésame, bœuf, cheddar, sauce maison." data-allergens="Gluten,Sésame,Lait">Burgers</button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Hot-dog.jpg" data-title="Hot Dogs" data-desc="Saucisse de volaille et oignons frits." data-ing="Pain brioché, saucisse, ketchup, moutarde." data-allergens="Gluten,Moutarde">Hot dogs</button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Croque-monsieur.jpg" data-title="Croque Monsieur" data-desc="Fondant et croustillant." data-ing="Pain de mie, jambon, emmental." data-allergens="Gluten,Lait">Croque Monsieur</button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Pizza.jpg" data-title="Mini Pizzas" data-desc="Saveurs d'Italie." data-ing="Pâte fine, tomate, mozza, origan." data-allergens="Gluten,Lait">Pizzas</button>
                         <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=60" data-title="Cône Wrap" data-desc="Fraîcheur roulée." data-ing="Tortilla, fromage frais, crudités." data-allergens="Gluten,Lait">Cône Wrap</button>
-
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=800&q=60" data-title="Feuilleté" data-desc="Croustillant et doré." data-ing="Pâte feuilletée, garniture saison." data-allergens="Gluten,Œuf">Feuilleté</button>
-                        
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1572695157363-bc31c5d53149?auto=format&fit=crop&w=800&q=60" data-title="Bruschetta" data-desc="Tartine méditerranéenne." data-ing="Pain grillé, tomate, ail, basilic." data-allergens="Gluten">Bruschetta</button>
-
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Feuilleté" data-title="Feuilleté" data-desc="Croustillant et doré." data-ing="Pâte feuilletée, garniture saison." data-allergens="Gluten,Œuf">Feuilleté</button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Bruschetta" data-title="Bruschetta" data-desc="Tartine méditerranéenne." data-ing="Pain grillé, tomate, ail, basilic." data-allergens="Gluten">Bruschetta</button>
                         <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=60" data-title="Navette" data-desc="Petit pain brioché garni." data-ing="Pain navette, mousse canard ou thon." data-allergens="Gluten,Œuf,Lait">Navette</button>
-
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1621251347633-9118c7c2522b?auto=format&fit=crop&w=800&q=60" data-title="Muffins Salés" data-desc="Moelleux aux légumes ou lardons." data-ing="Farine, œufs, légumes, fromage." data-allergens="Gluten,Œuf,Lait">Muffins Salés</button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Muffins salé.webp" data-title="Muffins Salés" data-desc="Moelleux aux légumes ou lardons." data-ing="Farine, œufs, légumes, fromage." data-allergens="Gluten,Œuf,Lait">Muffins Salés</button>
                     </div>
                 </div>
             </div>
@@ -301,24 +395,22 @@
                     <h3 class="main-category-title">Les Verrines</h3>
                     <span class="card-price">2,50€ la pièce</span>
                     <div class="selection-grid">
-                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=800&q=60" data-title="Thon Pêche" data-desc="Fraîcheur sucré-salé." data-ing="Thon, pêche, mayonnaise, ciboulette." data-allergens="Poisson,Œuf">Thon pêche</button>
-                        
-                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1623855244697-5d8fbe9c7992?auto=format&fit=crop&w=800&q=60" data-title="Perles Avocat Saumon" data-desc="Onctueux et raffiné." data-ing="Avocat, saumon fumé, citron, aneth." data-allergens="Poisson,Lait">Perles avocat saumon</button>
-
-                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1505253668822-4204204916cd?auto=format&fit=crop&w=800&q=60" data-title="Potimarron Chorizo" data-desc="Douceur automnale relevée." data-ing="Velouté potimarron, chips chorizo." data-allergens="Lait">Potimarron chorizo</button>
-
-                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1605695785834-b040409a2503?auto=format&fit=crop&w=800&q=60" data-title="Boudin Pomme" data-desc="Le mariage classique revisité." data-ing="Compotée pommes, boudin noir." data-allergens="Gluten">Boudin pomme</button>
-                        
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Thon.jpg" data-title="Thon Pêche" data-desc="Fraîcheur sucré-salé." data-ing="Thon, pêche, mayonnaise, ciboulette." data-allergens="Poisson,Œuf">Thon pêche</button>
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Saumon.jpeg" data-title="Perles Avocat Saumon" data-desc="Onctueux et raffiné." data-ing="Avocat, saumon fumé, citron, aneth." data-allergens="Poisson,Lait">Perles avocat saumon</button>
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Pottimaron.webp" data-title="Potimarron Chorizo" data-desc="Douceur automnale relevée." data-ing="Velouté potimarron, chips chorizo." data-allergens="Lait">Potimarron chorizo</button>
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Boudin.jpg" data-title="Boudin Pomme" data-desc="Le mariage classique revisité." data-ing="Compotée pommes, boudin noir." data-allergens="Gluten">Boudin pomme</button>
                         <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="https://images.unsplash.com/photo-1515443961218-a51367888e4b?auto=format&fit=crop&w=800&q=60" data-title="Rougail Crevette" data-desc="Touche exotique." data-ing="Crevettes, tomates, épices, riz." data-allergens="Crustacés">Rougail crevette</button>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
     <section id="sucre" class="menu-section">
-        <h2 class="section-title">Le Coin Sucré</h2>
+        <h2 class="section-title">
+            <span>Le Coin Sucré</span>
+            <img src="Images/Sucre.png" alt="Douceurs" class="deco-sucre">
+        </h2>
         <div class="menu-grid">
             <div class="menu-card" id="card-sucre">
                 <div class="card-img-container">
@@ -335,12 +427,9 @@
                     <span class="card-price">2,50€ la pièce</span>
                     <div class="selection-grid">
                         <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=800&q=60" data-title="Muffin Chocolat" data-desc="Tout chocolat, cœur fondant." data-ing="Chocolat noir, farine, beurre." data-allergens="Gluten,Lait,Œuf">Muffin chocolat</button>
-                        
                         <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=60" data-title="Tartelettes Fruits" data-desc="Fraîcheur des fruits de saison." data-ing="Pâte sablée, crème, fruits." data-allergens="Gluten,Lait,Œuf">Tartelettes fruits</button>
-
                         <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1542315053-90d5718df26d?auto=format&fit=crop&w=800&q=60" data-title="Salade de fruits" data-desc="Cocktail vitaminé frais." data-ing="Mélange de fruits frais de saison." data-allergens="">Salade de fruit</button>
-
-                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1551024601-569d6f46319c?auto=format&fit=crop&w=800&q=60" data-title="Panna Cotta" data-desc="Crème dessert italienne et coulis." data-ing="Crème, sucre, vanille, coulis rouge." data-allergens="Lait">Panna cotta</button>
+                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="Images/Panna cotta.webp" data-title="Panna Cotta" data-desc="Crème dessert italienne et coulis." data-ing="Crème, sucre, vanille, coulis rouge." data-allergens="Lait">Panna cotta</button>
                     </div>
                 </div>
             </div>
@@ -363,6 +452,8 @@
                 <br>
                 <p><strong>Téléphone :</strong> 06 63 41 33 00</p>
                 <p><strong>Email :</strong> <a href="mailto:auxdelicesdesmiss@gmail.com">auxdelicesdesmiss@gmail.com</a></p>
+                
+                <img src="Images/Père-Noël.png" alt="Père Noël" class="img-pere-noel">
             </div>
             <form class="contact-form">
                 <input type="email" class="form-control" placeholder="Votre adresse email" required>
@@ -374,11 +465,27 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Aux Délices des Miss - Tous droits réservés.</p>
+        <p>&copy; 2026 Aux Délices des Miss - Tous droits réservés.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- GESTION OVERLAY ---
+            const overlay = document.getElementById('overlay-backdrop');
+            const closeBtn = document.getElementById('close-overlay-btn');
+
+            document.body.style.overflow = 'hidden';
+
+            closeBtn.addEventListener('click', () => {
+                overlay.style.transition = 'opacity 0.5s';
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 500);
+            });
+
+            // --- GESTION DES CARTES ---
             const buttons = document.querySelectorAll('.select-btn');
             buttons.forEach(btn => {
                 btn.addEventListener('click', function() {
