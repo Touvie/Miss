@@ -29,143 +29,80 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- OVERLAY CENTRAL (MODAL) --- */
+        /* --- OVERLAY CENTRAL --- */
         #overlay-backdrop {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); z-index: 9999;
+            display: flex; justify-content: center; align-items: center; padding: 20px;
             backdrop-filter: blur(5px);
         }
 
         #welcome-modal {
-            background-color: var(--white);
-            width: 100%;
-            max-width: 500px;
-            padding: 2.5rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            border: 2px solid var(--accent-color);
-            position: relative;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background-color: var(--white); width: 100%; max-width: 500px;
+            padding: 2.5rem; border-radius: 15px; text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 2px solid var(--accent-color);
+            position: relative; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            color: #b3000c;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal-text {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #555;
-        }
-
+        .modal-title { font-family: 'Playfair Display', serif; color: #b3000c; font-size: 2.5rem; margin-bottom: 1rem; }
+        .modal-text { font-size: 1.1rem; margin-bottom: 2rem; color: #555; }
         .modal-btn {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-weight: bold;
+            background-color: var(--accent-color); color: white; border: none; padding: 12px 30px; border-radius: 50px;
+            font-size: 1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-weight: bold;
         }
         .modal-btn:hover { background-color: #a38242; transform: translateY(-2px); }
 
-
         /* --- NAVIGATION --- */
         header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: fixed; width: 100%; top: 0; z-index: 1000; height: 80px; display: flex; align-items: center;
         }
         nav {
             width: 100%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem;
         }
         .brand-area { display: flex; align-items: center; gap: 10px; }
-        
         .logo-img { height: 50px; width: auto; border-radius: 50%; }
         .brand-name { font-size: 1.4rem; font-weight: 700; font-family: 'Playfair Display', serif; letter-spacing: 1px; }
-        
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { font-size: 1rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
         .nav-links a:hover { color: var(--accent-color); }
-        
-        /* CLASS UNIQUE POUR LES DEUX SAPINS (Même taille) */
-        .header-sapin {
-            height: 40px; 
-            width: auto;
-            vertical-align: middle;
-        }
+        .header-sapin { height: 40px; width: auto; vertical-align: middle; }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 90vh;
-            position: relative;
+            height: 90vh; position: relative;
             background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 1rem;
-            margin-top: 80px;
-            overflow: hidden; 
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 1rem; margin-top: 80px; overflow: hidden; 
         }
 
         .hero::after {
-            content: '';
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100px;
-            background: linear-gradient(to bottom, transparent, var(--bg-color));
-            pointer-events: none; z-index: 3;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--bg-color)); pointer-events: none; z-index: 3;
         }
 
         .hero-content { position: relative; z-index: 10; }
         .hero h1 { font-size: 4rem; margin-bottom: 0.5rem; color: #ffffff !important; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .hero p { 
-            font-size: 1.4rem; margin: 0 auto 2.5rem auto; color: #f0f0f0; 
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5); max-width: 700px; 
-        }
-
+        .hero p { font-size: 1.4rem; margin: 0 auto 2.5rem auto; color: #f0f0f0; text-shadow: 0 2px 5px rgba(0,0,0,0.5); max-width: 700px; }
         .center { text-align: center; }
-
         .btn {
-            background-color: var(--accent-color); color: var(--white); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-transform: uppercase; border: none; cursor: pointer; font-size: 0.9rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: var(--accent-color); color: var(--white); padding: 1rem 2.5rem; border-radius: 50px;
+            font-weight: 700; text-transform: uppercase; border: none; cursor: pointer; font-size: 0.9rem; letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .btn:hover { background-color: #a38242; transform: translateY(-2px); }
 
         /* --- NEIGE CSS --- */
-        .snow-container {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 5;
-        }
+        .snow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
         .snowflake {
-            position: absolute; top: -20px; 
-            color: white; font-size: 1.5rem; opacity: 0.8;
-            animation: fall linear infinite;
-            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+            position: absolute; top: -20px; color: white; font-size: 1.5rem; opacity: 0.8;
+            animation: fall linear infinite; text-shadow: 0 0 5px rgba(255,255,255,0.8);
         }
         .snowflake::after { content: '❄'; } 
-
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
-        
         .s1 { left: 10%; animation-duration: 10s; font-size: 1.2rem; }
         .s2 { left: 25%; animation-duration: 15s; animation-delay: 2s; font-size: 1rem; }
         .s3 { left: 40%; animation-duration: 12s; animation-delay: 4s; font-size: 1.5rem; }
@@ -181,9 +118,7 @@
         }
         .section-title span { position: relative; }
         .section-title span::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent-color); margin: 10px auto 0; }
-        
         .deco-sucre { height: 40px; width: auto; }
-
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; }
 
         /* --- CARTE --- */
@@ -192,7 +127,7 @@
         .card-img-container {
             position: relative; height: 400px; overflow: hidden;
             border-top-left-radius: 12px; border-top-right-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15); z-index: 10;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); z-index: 10; transition: height 0.3s;
         }
 
         .card-img { width: 100%; height: 100%; background-color: #333; background-size: cover; background-position: center; transition: opacity 0.3s ease-in-out; }
@@ -203,9 +138,11 @@
             padding: 2rem 1.5rem 1rem 1.5rem; color: white; opacity: 0; transform: translateY(20px); transition: all 0.4s ease-out; pointer-events: none;
         }
         .image-overlay.active { opacity: 1; transform: translateY(0); }
+        
         .overlay-title { font-family: 'Playfair Display', serif; color: var(--accent-color); font-size: 1.6rem; margin-bottom: 0.3rem; }
         .overlay-desc { font-size: 0.95rem; margin-bottom: 0.5rem; color: #ddd; font-style: italic; }
         .overlay-ing { font-size: 0.85rem; color: #ccc; }
+        
         .tags-wrapper { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
         .tag { font-size: 0.65rem; background-color: rgba(255,255,255,0.2); color: #fff; padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); }
 
@@ -236,14 +173,10 @@
         .contact-form { background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 8px; width: 100%; }
         .form-control { width: 100%; padding: 15px; border: 1px solid #444; background-color: #383838; color: white; border-radius: 4px; margin-bottom: 1.2rem; font-size: 1rem; }
         .form-control:focus { outline: none; border-color: var(--accent-color); background-color: #444; }
-
-        /* Image Père Noël (taille augmentée) */
         .img-pere-noel { margin-top: 20px; max-width: 300px; display: block; border-radius: 8px; }
 
         /* --- FOOTER --- */
-        footer {
-            background-color: #222; color: #888; padding: 2rem 1rem; text-align: center;
-        }
+        footer { background-color: #222; color: #888; padding: 2rem 1rem; text-align: center; }
         footer p { font-family: 'Lato', sans-serif; font-size: 0.9rem; margin: 0; }
 
         /* --- RESPONSIVE --- */
@@ -253,16 +186,26 @@
             header { padding: 0 1rem; }
             nav { padding: 0; }
             .hero { margin-top: 80px; height: 80vh; }
-            .hero h1 { font-size: 2.5rem; line-height: 1.2; }
+            
+            /* Correction Hero Mobile : Traiteur sur une ligne, Créatif & Généreux sur l'autre */
+            .hero h1 { font-size: 2.8rem; line-height: 1.2; display: flex; flex-direction: column; align-items: center; }
+            .hero-line-2 { white-space: nowrap; } /* Garde "Créatif & Généreux" ensemble */
+
             .menu-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .card-img-container { height: 250px; }
+            
+            /* Correction Overlay Mobile : Augmenter image, réduire texte */
+            .card-img-container { height: 320px; } /* Un peu plus grand */
+            .image-overlay { padding: 1rem; }
+            .overlay-title { font-size: 1.3rem; margin-bottom: 0.2rem; }
+            .overlay-desc { font-size: 0.85rem; margin-bottom: 0.3rem; }
+            .overlay-ing { font-size: 0.8rem; line-height: 1.3; }
+            .tags-wrapper { margin-top: 5px; }
+
             .contact-container { grid-template-columns: 1fr; gap: 2rem; }
             .select-btn { padding: 8px; font-size: 0.85rem; }
             
             #welcome-modal { padding: 1.5rem; width: 90%; }
             .modal-title { font-size: 2rem; }
-            
-            /* Ajustement pour mobile si le nom + sapin est trop large */
             .header-sapin { height: 30px; }
         }
     </style>
@@ -301,16 +244,15 @@
 
     <section class="hero">
         <div class="snow-container">
-            <div class="snowflake s1"></div>
-            <div class="snowflake s2"></div>
-            <div class="snowflake s3"></div>
-            <div class="snowflake s4"></div>
-            <div class="snowflake s5"></div>
-            <div class="snowflake s6"></div>
+            <div class="snowflake s1"></div><div class="snowflake s2"></div><div class="snowflake s3"></div>
+            <div class="snowflake s4"></div><div class="snowflake s5"></div><div class="snowflake s6"></div>
         </div>
 
         <div class="hero-content">
-            <h1>Traiteur Créatif & Généreux</h1>
+            <h1>
+                <span>Traiteur</span>
+                <span class="hero-line-2">Créatif & Généreux</span>
+            </h1>
             <p class="center">L'art de recevoir avec simplicité et élégance.</p>
             <a href="#aperitifs" class="btn">Découvrir la carte</a>
         </div>
@@ -356,7 +298,7 @@
         <div class="menu-grid">
             <div class="menu-card" id="card-bouchees">
                 <div class="card-img-container">
-                    <div class="card-img" id="img-bouchees" style="background-image: url('https://images.unsplash.com/photo-1595295333158-4742f28fbd85?auto=format&fit=crop&w=800&q=60');"></div>
+                    <div class="card-img" id="img-bouchees" style="background-image: url('Images/Bouchees.jpg');"></div>
                     <div class="image-overlay" id="overlay-bouchees">
                         <h4 class="overlay-title">Titre</h4>
                         <p class="overlay-desc">Desc</p>
@@ -373,8 +315,8 @@
                         <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Croque-monsieur.jpg" data-title="Croque Monsieur" data-desc="Fondant et croustillant." data-ing="Pain de mie, jambon, emmental." data-allergens="Gluten,Lait">Croque Monsieur</button>
                         <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Pizza.jpg" data-title="Mini Pizzas" data-desc="Saveurs d'Italie." data-ing="Pâte fine, tomate, mozza, origan." data-allergens="Gluten,Lait">Pizzas</button>
                         <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=60" data-title="Cône Wrap" data-desc="Fraîcheur roulée." data-ing="Tortilla, fromage frais, crudités." data-allergens="Gluten,Lait">Cône Wrap</button>
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Feuilleté" data-title="Feuilleté" data-desc="Croustillant et doré." data-ing="Pâte feuilletée, garniture saison." data-allergens="Gluten,Œuf">Feuilleté</button>
-                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Bruschetta" data-title="Bruschetta" data-desc="Tartine méditerranéenne." data-ing="Pain grillé, tomate, ail, basilic." data-allergens="Gluten">Bruschetta</button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Feuilleté.jpg" data-title="Feuilleté" data-desc="Croustillant et doré." data-ing="Pâte feuilletée, garniture saison." data-allergens="Gluten,Œuf">Feuilleté</button>
+                        <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Bruschetta.jpg" data-title="Bruschetta" data-desc="Tartine méditerranéenne." data-ing="Pain grillé, tomate, ail, basilic." data-allergens="Gluten">Bruschetta</button>
                         <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=60" data-title="Navette" data-desc="Petit pain brioché garni." data-ing="Pain navette, mousse canard ou thon." data-allergens="Gluten,Œuf,Lait">Navette</button>
                         <button class="select-btn" data-target="card-bouchees" data-overlay="overlay-bouchees" data-img="Images/Muffins salé.webp" data-title="Muffins Salés" data-desc="Moelleux aux légumes ou lardons." data-ing="Farine, œufs, légumes, fromage." data-allergens="Gluten,Œuf,Lait">Muffins Salés</button>
                     </div>
@@ -383,7 +325,7 @@
 
             <div class="menu-card" id="card-verrines">
                 <div class="card-img-container">
-                    <div class="card-img" id="img-verrines" style="background-image: url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=800&q=60');"></div>
+                    <div class="card-img" id="img-verrines" style="background-image: url('Images/Verrines.png');"></div>
                     <div class="image-overlay" id="overlay-verrines">
                         <h4 class="overlay-title">Titre</h4>
                         <p class="overlay-desc">Desc</p>
@@ -395,7 +337,7 @@
                     <h3 class="main-category-title">Les Verrines</h3>
                     <span class="card-price">2,50€ la pièce</span>
                     <div class="selection-grid">
-                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Thon.jpg" data-title="Thon Pêche" data-desc="Fraîcheur sucré-salé." data-ing="Thon, pêche, mayonnaise, ciboulette." data-allergens="Poisson,Œuf">Thon pêche</button>
+                        <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Thon.jpg" data-title="Thon Pêche" data-desc="Fraîcheur sucré-salé." data-ing="Thon, pêche, mayonnaise, ciboulette." data-allergens="Poisson,Œuf">Thon Pêche</button>
                         <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Saumon.jpeg" data-title="Perles Avocat Saumon" data-desc="Onctueux et raffiné." data-ing="Avocat, saumon fumé, citron, aneth." data-allergens="Poisson,Lait">Perles avocat saumon</button>
                         <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Pottimaron.webp" data-title="Potimarron Chorizo" data-desc="Douceur automnale relevée." data-ing="Velouté potimarron, chips chorizo." data-allergens="Lait">Potimarron chorizo</button>
                         <button class="select-btn" data-target="card-verrines" data-overlay="overlay-verrines" data-img="Images/Verrine-Boudin.jpg" data-title="Boudin Pomme" data-desc="Le mariage classique revisité." data-ing="Compotée pommes, boudin noir." data-allergens="Gluten">Boudin pomme</button>
@@ -427,8 +369,8 @@
                     <span class="card-price">2,50€ la pièce</span>
                     <div class="selection-grid">
                         <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=800&q=60" data-title="Muffin Chocolat" data-desc="Tout chocolat, cœur fondant." data-ing="Chocolat noir, farine, beurre." data-allergens="Gluten,Lait,Œuf">Muffin chocolat</button>
-                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=60" data-title="Tartelettes Fruits" data-desc="Fraîcheur des fruits de saison." data-ing="Pâte sablée, crème, fruits." data-allergens="Gluten,Lait,Œuf">Tartelettes fruits</button>
-                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="https://images.unsplash.com/photo-1542315053-90d5718df26d?auto=format&fit=crop&w=800&q=60" data-title="Salade de fruits" data-desc="Cocktail vitaminé frais." data-ing="Mélange de fruits frais de saison." data-allergens="">Salade de fruit</button>
+                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="Images/Tartelettes-fruits.webp" data-title="Tartelettes Fruits" data-desc="Fraîcheur des fruits de saison." data-ing="Pâte sablée, crème, fruits." data-allergens="Gluten,Lait,Œuf">Tartelettes fruits</button>
+                        <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="Images/Salade-de-fruit.jpg" data-title="Salade de fruits" data-desc="Cocktail vitaminé frais." data-ing="Mélange de fruits frais de saison." data-allergens="">Salade de fruits</button>
                         <button class="select-btn" data-target="card-sucre" data-overlay="overlay-sucre" data-img="Images/Panna cotta.webp" data-title="Panna Cotta" data-desc="Crème dessert italienne et coulis." data-ing="Crème, sucre, vanille, coulis rouge." data-allergens="Lait">Panna cotta</button>
                     </div>
                 </div>
@@ -437,8 +379,8 @@
             <div class="menu-card" style="justify-content: center; background-color: var(--accent-color); color: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                 <div class="card-content" style="text-align: center; border:none; background: transparent; padding: 3rem; margin-top: 0;">
                     <h3 style="color: white; font-size: 2rem;">Sur Mesure</h3>
-                    <p style="margin-top: 1.5rem; color: #fff;">Liste des bouchées non exclusives.</p>
-                    <p style="font-weight: bold; font-size: 1.2rem; margin-top: 1rem;">ON S'ADAPTE A VOS GOUTS !</p>
+                    <p style="margin-top: 1.5rem; color: #fff;">Liste des bouchées non exhaustive.</p>
+                    <p style="font-weight: bold; font-size: 1.2rem; margin-top: 1rem;">ON S'ADAPTE À VOS GOÛTS&nbsp;!</p>
                 </div>
             </div>
         </div>
@@ -452,7 +394,6 @@
                 <br>
                 <p><strong>Téléphone :</strong> 06 63 41 33 00</p>
                 <p><strong>Email :</strong> <a href="mailto:auxdelicesdesmiss@gmail.com">auxdelicesdesmiss@gmail.com</a></p>
-                
                 <img src="Images/Père-Noël.png" alt="Père Noël" class="img-pere-noel">
             </div>
             <form class="contact-form">
@@ -473,7 +414,6 @@
             // --- GESTION OVERLAY ---
             const overlay = document.getElementById('overlay-backdrop');
             const closeBtn = document.getElementById('close-overlay-btn');
-
             document.body.style.overflow = 'hidden';
 
             closeBtn.addEventListener('click', () => {
@@ -526,6 +466,13 @@
                     }
                     overlay.classList.add('active');
                 });
+            });
+
+            // --- PRÉCHARGEMENT DES IMAGES (Anti-délai) ---
+            const imagesToPreload = document.querySelectorAll('[data-img]');
+            imagesToPreload.forEach(el => {
+                const img = new Image();
+                img.src = el.getAttribute('data-img');
             });
         });
     </script>
